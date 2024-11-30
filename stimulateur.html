@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <style>
+        .affiche {
+            display: none;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Stimulateur des notes:</h1>
+        <div class="mb-3">
+            <label for="cc1" class="form-label">CC1</label>
+            <input type="text" class="form-control" id="cc1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="cc2" class="form-label">CC2</label>
+            <input type="text" class="form-control" id="cc2">
+        </div>
+        <div class="mb-3">
+            <label for="CC2" class="form-label">CC3</label>
+            <input type="text" class="form-control" id="CC2" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="EFM" class="form-label">EFM</label>
+            <input type="text" class="form-control" id="EFM" aria-describedby="emailHelp">
+        </div>
+        <button type="submit" class="btn btn-primary" onclick="calculmoyenne()">Calculer</button>
+        <div class="alert alert-danger my-5 affiche" role="alert" id="nonvalide"></div>
+        <div class="alert alert-success my-5 affiche" role="alert" id="valide"></div>
+    </div>
+
+    <script>
+        const calculmoyenne = () => {
+            cc1 = Number(document.getElementById('cc1').value)
+            cc2 = Number(document.getElementById('cc2').value)
+            cc3 = Number(document.getElementById('CC2').value) // Corrected id
+            efm = Number(document.getElementById('EFM').value)
+            moyenne = ((cc1 + cc2 + cc3) / 3) * 0.33 + efm * 0.67
+            console.log(moyenne)
+
+            if (moyenne >= 10) {
+                console.log('valide')
+                document.getElementById('valide').innerHTML = 'vous avez validez le module '+moyenne
+                document.getElementById('valide').style.display = 'block' // Corrected typo
+                document.getElementById('nonvalide').style.display = 'none'
+            } else {
+                console.log('nonvalide')
+                document.getElementById('nonvalide').innerHTML = "vous n'avez pas validez le module"
+                document.getElementById('nonvalide').style.display = 'block'
+                document.getElementById('valide').style.display = 'none'
+            }
+        }
+    </script>
+
+    <!-- <script src="./bootstrap.bundle.min.js"></script> -->
+</body>
+
+</html>
